@@ -9,6 +9,9 @@ spec:
   selector:
     matchLabels:
       app: db-stateful-set
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
   template:
     metadata:
       labels:
