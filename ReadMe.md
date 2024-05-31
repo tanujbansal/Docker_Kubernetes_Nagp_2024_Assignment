@@ -11,7 +11,7 @@ for communication - **Using K8s services via deploying yaml for stateful set DB 
 2. Dockerfile should be present as well - **Docker file is present**
 3. Current docker image deployed on Kubernetes api-service: **tbansal18101991docker/index_image_v17**
 4. Also include a README.md file - **ReadMe.md is present. ReadMe also describe steps followed while creating the cluster, stateful set DB, k8s configmap, k8s secret, loadbalancer, deployment, docker build, pushing of docker image, enabling HPA and rolling update for api-service**
-5. Link for the code repository - **https://github.com/tanujbansal/Docker_Kubernetes_Nagp_Assignment**
+5. Link for the code repository - **https://github.com/tanujbansal/Docker_Kubernetes_Nagp_2024_Assignment**
 6. Docker hub URL for docker images - **https://hub.docker.com/repositories/tbansal18101991docker**
 7. URL for Service API tier to view the records from backend tier 
    -> Url for fetching all employee details(GET REST API): **http://35.222.173.1:80/getAllEmployees**
