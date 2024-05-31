@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-stateful-set
+  namespace: tb-k8-nagp-2024
+spec:
+  serviceName: db-stateful-set
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-stateful-set
+  template:
+    metadata:
+      labels:
+        app: db-stateful-set
+    spec:
+      containers:
+      - name: db-stateful-set
+        image: postgres:latest
+        ports:
+        - containerPort: 5432
+          name: db-stateful-set
+        env:
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: db-configmap
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: db-configmap
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: POSTGRES_PASSWORD
+        volumeMounts:
+        - name: tb-postgres-storage
+          mountPath: /var/lib/postgresql/mount
+  volumeClaimTemplates:
+  - metadata:
+      name: tb-postgres-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: standard
+      volumeName: tb-postgres-storage

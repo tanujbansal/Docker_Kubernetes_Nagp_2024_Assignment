@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-stateful-set
+  namespace: tb-k8-nagp-2024
+spec:
+  selector:
+    app: db-stateful-set
+  ports:
+  - port: 5432
+    name: db-stateful-set
+  clusterIP: None # For headless service

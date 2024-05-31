@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-service-deployment
+  namespace: tb-k8-nagp-2024
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api-service-container
+        image: index.docker.io/tbansal18101991docker/index_image_v20:latest
+        ports:
+        - containerPort: 8080
+        env:
+         - name: DB_HOST
+           valueFrom:
+            configMapKeyRef:
+              name: api-service-configmap
+              key: DB_HOST
+         - name: DB_NAME
+           valueFrom:
+            configMapKeyRef:
+              name: api-service-configmap
+              key: DB_NAME
+         - name: DB_USER
+           valueFrom:
+            configMapKeyRef:
+              name: api-service-configmap
+              key: DB_USER
+         - name: DB_PASSWORD
+           valueFrom:
+            secretKeyRef:
+             name: api-service-secret
+             key: DB_PASSWORD

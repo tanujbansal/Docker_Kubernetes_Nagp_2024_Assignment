@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tb-postgres-storage
+  namespace: tb-k8-nagp-2024
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: standard
+  gcePersistentDisk:
+    pdName: tb-disk-k8-nagp
+    fsType: ext4
